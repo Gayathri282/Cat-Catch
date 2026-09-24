@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>🐱 Cat Catch - Toon Dash!</title>
+  <!-- Google Fonts: Lilita One & Fredoka for 2D Cartoon aesthetics -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Lilita+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cat-catch.css">
+</head>
+<body>
+  <main id="gameShell">
+    <canvas id="gameCanvas" aria-label="Cat Catch game canvas"></canvas>
+
+    <!-- Top Navigation HUD -->
+    <div class="topbar">
+      <div class="stat-card score-card">
+        <span class="stat-icon">⭐</span>
+        <div class="stat-content">
+          <span class="stat-label">SCORE</span>
+          <span id="score">0</span>
+        </div>
+      </div>
+
+      <div class="level-card">
+        <span class="level-badge">LVL</span>
+        <strong id="level">1</strong>
+      </div>
+
+      <div class="stat-card combo-card">
+        <span class="stat-icon animated-flame">🔥</span>
+        <div class="stat-content">
+          <span class="stat-label">COMBO</span>
+          <span id="combo">0x</span>
+        </div>
+      </div>
+
+      <button id="soundBtn" class="hud-btn" title="Toggle Music & Sound">🔊</button>
+    </div>
+
+    <!-- Floating Comic Pop-up Message -->
+    <div id="message" class="message"></div>
+
+    <!-- Start Game Menu Overlay -->
+    <div id="startOverlay" class="overlay">
+      <div class="panel toon-panel">
+        <div class="mascot-container">
+          <div class="mascot-badge">CAT CATCH!</div>
+          <div class="mascot" id="menuMascot">🐱</div>
+        </div>
+
+        <h1 class="toon-title">CAT CATCH!</h1>
+        <p class="toon-subtitle">Help Kitty catch yummy goodies & dodge danger!</p>
+
+        <!-- Skin Selector -->
+        <div class="skin-selector">
+          <span class="skin-title">CHOOSE KITTY SKIN:</span>
+          <div class="skin-options">
+            <button class="skin-btn active" data-skin="tabby" title="Tabby Cat">🐱 Tabby</button>
+            <button class="skin-btn" data-skin="ninja" title="Ninja Cat">🥷 Ninja</button>
+            <button class="skin-btn" data-skin="rainbow" title="Rainbow Kitty">🌈 Rainbow</button>
+            <button class="skin-btn" data-skin="space" title="Cosmo Cat">🚀 Cosmo</button>
+          </div>
+        </div>
+
+        <!-- Rules Grid -->
+        <div class="rules">
+          <div class="rule-item catch-rule"><span class="rule-icon">🐟</span><span>Fish</span><small>+15 pts</small></div>
+          <div class="rule-item catch-rule"><span class="rule-icon">🧶</span><span>Yarn</span><small>+20 pts</small></div>
+          <div class="rule-item catch-rule"><span class="rule-icon">⭐</span><span>Star</span><small>+30 pts</small></div>
+          <div class="rule-item catch-rule bonus-rule"><span class="rule-icon">🍩</span><span>Donut</span><small>+50 pts</small></div>
+          <div class="rule-item avoid-rule"><span class="rule-icon">🪨</span><span>Rock</span><small>Bonk!</small></div>
+          <div class="rule-item avoid-rule"><span class="rule-icon">💣</span><span>Bomb</span><small>BOOM!</small></div>
+        </div>
+
+        <button id="startBtn" class="toon-btn start-btn">
+          <span class="btn-shine"></span>
+          <span>START GAME 🚀</span>
+        </button>
+        <small class="control-hint">👈 Tap Left / Right or use Arrow Keys 👉</small>
+      </div>
+    </div>
+
+    <!-- Game Over Menu Overlay -->
+    <div id="gameOverOverlay" class="overlay hidden">
+      <div class="panel toon-panel gameover-panel">
+        <div class="mascot-container">
+          <div class="mascot gameover-mascot">🙀</div>
+        </div>
+
+        <h1 class="toon-title gameover-title">OH NO!</h1>
+        <p id="gameOverReason" class="toon-subtitle">The kitty got bonked!</p>
+
+        <div class="score-summary">
+          <div class="summary-card final-score">
+            <span class="summary-icon">🏆</span>
+            <div class="summary-info">
+              <span class="summary-label">FINAL SCORE</span>
+              <strong id="finalScore">0</strong>
+            </div>
+          </div>
+          <div class="summary-card best-score">
+            <span class="summary-icon">👑</span>
+            <div class="summary-info">
+              <span class="summary-label">BEST RECORD</span>
+              <strong id="bestScore">0</strong>
+            </div>
+          </div>
+        </div>
+
+        <button id="restartBtn" class="toon-btn restart-btn">
+          <span class="btn-shine"></span>
+          <span>PLAY AGAIN 🔄</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Touch Control Zones for Mobile/Tablet -->
+    <div class="touch-zone left-zone" data-dir="left"></div>
+    <div class="touch-zone right-zone" data-dir="right"></div>
+    
+    <!-- On-screen hint -->
+    <div class="hint">
+      <span class="hint-key">👈 LEFT</span>
+      <span class="hint-text">TOUCH OR KEYS</span>
+      <span class="hint-key">RIGHT 👉</span>
+    </div>
+  </main>
+
+  <script src="cat-catch.js"></script>
+</body>
+</html>
