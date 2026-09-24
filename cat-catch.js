@@ -171,12 +171,14 @@ function sfx(kind) {
   }
 }
 
-// Sound toggle listener
-soundBtn.addEventListener('click', () => {
-  isMuted = !isMuted;
-  soundBtn.textContent = isMuted ? '🔇' : '🔊';
-  if (!isMuted) startMusic();
-});
+// Sound toggle listener (if button exists)
+if (soundBtn) {
+  soundBtn.addEventListener('click', () => {
+    isMuted = !isMuted;
+    soundBtn.textContent = isMuted ? '🔇' : '🔊';
+    if (!isMuted) startMusic();
+  });
+}
 
 // ==========================================
 // SKIN SELECTOR & CONTROLS
