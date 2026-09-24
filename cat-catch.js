@@ -238,7 +238,7 @@ soundBtn.addEventListener('click', () => {
 // ==========================================
 // SKIN SELECTOR & GAME CONTROLS
 // ==========================================
-const skinBtns = document.querySelectorAll('.skin-btn');
+const skinBtns = document.querySelectorAll('.skin-card, .skin-btn');
 skinBtns.forEach(btn => {
   btn.addEventListener('click', () => {
     skinBtns.forEach(b => b.classList.remove('active'));
